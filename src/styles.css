@@ -7,6 +7,11 @@
 }
 *{box-sizing:border-box}
 html,body,#root{height:100%}
+html{scroll-behavior:smooth}
+/* remove default underline for links used in nav/brand, keep visible focus for accessibility */
+.links a, .brand-link{color:inherit;text-decoration:none}
+.links a:focus, .brand-link:focus{outline:2px solid rgba(124,58,237,0.6);outline-offset:3px;border-radius:6px}
+.links a:hover{text-decoration:none;opacity:0.92}
 body{
   margin:0;
   font-family:Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
@@ -21,6 +26,19 @@ body{
 .links{display:flex;gap:16px;align-items:center}
 .links a{color:var(--muted);cursor:pointer}
 .links a.cta{background:linear-gradient(90deg,#06b6d4,#7c3aed);padding:8px 12px;border-radius:8px;color:#021024}
+
+/* Mobile nav toggle */
+.nav-toggle{display:none;background:transparent;border:0;color:inherit;cursor:pointer;padding:8px;border-radius:8px}
+.nav-toggle svg{display:block}
+
+@media (max-width:900px){
+  .nav{padding:10px 18px}
+  .nav-toggle{display:block}
+  .links{position:fixed;right:12px;top:72px;background:rgba(2,6,23,0.9);backdrop-filter:blur(8px);flex-direction:column;gap:12px;padding:12px;border-radius:10px;display:none;z-index:2000}
+  .links.open{display:flex}
+  .links a{padding:8px 12px}
+  .links a.cta{align-self:stretch;text-align:center}
+}
 
 .hero{display:block;min-height:100vh;padding:0;margin:0;position:relative}
 .hero-inner{max-width:1200px;padding:48px 64px;margin:0 auto}
@@ -79,26 +97,53 @@ body{
 
 /* Sections general */
 .section{padding:60px 48px;border-top:1px solid rgba(255,255,255,0.02);background:linear-gradient(180deg, rgba(255,255,255,0.00), rgba(255,255,255,0.00));}
+.section{scroll-margin-top:92px}
 .section-inner{max-width:1100px;margin:0 auto 28px;text-align:center}
 .section-title{font-size:28px;margin:0 0 8px}
 .lead{color:var(--muted);margin:0 0 18px}
 
-/* About */
-.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;max-width:900px;margin:0 auto}
+.about-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;max-width:1100px;margin:0 auto}
 .about-card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:22px;border-radius:12px;text-align:left}
 .about-card h4{margin:0 0 8px}
 
 /* Services */
-.services-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;max-width:1200px;margin:12px auto}
-.service-card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:20px;border-radius:12px;min-height:140px;display:flex;flex-direction:column;gap:8px}
-.service-icon{font-size:28px}
-.service-card h4{margin:0}
-.service-card p{margin:0;color:var(--muted);font-size:14px}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:1200px;margin:12px auto}
+.service-card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:26px;border-radius:20px;min-height:180px;display:flex;flex-direction:column;gap:12px}
+.service-card h4{margin:0;justify-content:center;display:flex}
+.service-card p{margin:0;color:var(--muted);font-size:14px;justify-content: center;display:flex}
+.service-icon{font-size:34px;display:flex;align-items:center;justify-content:center;margin-bottom:12px}
+.service-icon img{width:300px;height:200px;object-fit:cover;border-radius:20px;display:block}
 
-/* Clients strip */
-.clients-strip{display:flex;gap:18px;align-items:center;overflow-x:auto;padding:12px 48px;scroll-snap-type:x mandatory}
-.client-logo{flex:0 0 auto;width:160px;height:72px;background:rgba(255,255,255,0.02);display:flex;align-items:center;justify-content:center;border-radius:10px;padding:8px}
-.client-logo img{max-width:100%;max-height:100%;object-fit:contain}
+/* Responsive adjustments for services */
+@media (max-width:1100px){
+  .services-grid{grid-template-columns:repeat(2,1fr)}
+}
+
+@media (max-width:900px){
+  .links a{padding:12px 16px;min-width:160px}
+  .service-card{padding:20px;min-height:150px}
+}
+
+@media (max-width:700px){
+  .service-icon img{width:48px;height:48px}
+  .service-card{padding:16px;min-height:120px}
+}
+
+/* Clients strip (responsive) */
+.clients-strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:18px;max-width:1200px;margin:12px auto;padding:0 12px}
+.client-logo{background:rgba(255,255,255,0.02);display:flex;align-items:center;justify-content:center;border-radius:10px;padding:12px;min-height:80px}
+.client-logo img{max-width:100%;height:auto;max-height:120px;object-fit:contain}
+
+@media (max-width:900px){
+  .clients-strip{grid-template-columns:repeat(auto-fit,minmax(140px,1fr))}
+  .client-logo img{max-height:90px}
+}
+
+@media (max-width:500px){
+  .clients-strip{grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:12px}
+  .client-logo{padding:8px;min-height:64px}
+  .client-logo img{max-height:64px}
+}
 
 /* Reviews */
 .reviews-wrap{display:flex;gap:18px;max-width:1200px;margin:0 auto;overflow:auto;padding:8px 24px}
@@ -157,8 +202,10 @@ body{
 .footer-bottom{margin-top:18px;color:var(--muted);font-size:13px;text-align:center}
 
 /* Interactive & scroll effects */
-.section{position:relative}
-.section::after{content:'';position:absolute;left:0;right:0;top:0;height:1px;background:linear-gradient(90deg, transparent, rgba(255,255,255,0.02), transparent);pointer-events:none}
+.section{position:relative;z-index:0;isolation:isolate}
+.section::after{content:'';position:absolute;left:0;right:0;top:0;height:1px;background:linear-gradient(90deg, transparent, rgba(255,255,255,0.02), transparent);pointer-events:none;z-index:-1}
+/* ensure section content sits above any decorative pseudo-elements to avoid visual overlap */
+.section > *{position:relative;z-index:1}
 
 /* subtle parallax background bands for visual separation */
 .section[data-band='soft']::before{content:'';position:absolute;inset:0;background:radial-gradient(800px 200px at 10% 10%, rgba(124,58,237,0.03), transparent);z-index:0;pointer-events:none}
@@ -174,4 +221,19 @@ body{
   .services-grid{grid-template-columns:1fr}
   .clients-strip{padding:8px}
   .reviews-wrap{flex-direction:column;padding:0 8px}
+  /* Force clients to a single column on small screens so only one client per row */
+  .clients-strip{grid-template-columns:1fr}
+  .client-logo{min-height:72px;padding:10px}
+  .client-logo img{max-height:64px}
 }
+
+/* Small screens: show one client per row for clarity */
+@media (max-width:500px){
+  .clients-strip{grid-template-columns:1fr;gap:12px;padding:8px}
+  .client-logo{min-height:72px;padding:10px;border-radius:12px}
+  .client-logo img{max-height:64px}
+}
+
+/* Improve client card styling for attractiveness */
+.client-logo{transition:transform 220ms ease, box-shadow 220ms ease}
+.client-logo:hover{transform:translateY(-6px);box-shadow:0 12px 40px rgba(2,6,23,0.6)}

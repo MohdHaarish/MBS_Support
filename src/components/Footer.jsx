@@ -12,16 +12,19 @@ export default function Footer(){
 
         <div className="footer-links">
           <h4>Company</h4>
-          <a>About</a>
-          <a>Careers</a>
-          <a>Contact</a>
+          <a>CEO: Azhruddin Mewati</a>
+          <a>CIN Number: U74999HR2022PTC104047</a>
+          <a>Address: 408-409, 3RD FLOOR, AKD TOWER SECTOR-14 GURGAON GURGAON HR 122001 IN HARYANA HARYANA india 122001</a>
+          <a>Phone: +91-8799747332</a>
+          <a>Email: azhruddin.m@mbssupportprivatelimited.in</a>
         </div>
 
         <div className="footer-links">
           <h4>Services</h4>
-          <a>Consumer Recovery</a>
-          <a>Commercial Recovery</a>
-          <a>Technology</a>
+          <a>Personal Loan Recovery</a>
+          <a>Debt Recovery Agency</a>
+          <a>Money Recovery</a>
+          <a>Recovery overseas debts</a>
         </div>
 
         <div className="footer-newsletter">

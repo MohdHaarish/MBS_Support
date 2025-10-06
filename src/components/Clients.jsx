@@ -3,7 +3,7 @@ import { motion } from 'framer-motion'
 
 export default function Clients({logos}){
   return (
-    <section className="section clients">
+  <section id="clients" className="section clients">
       <div className="section-inner">
         <h3 className="section-title">Our Clients</h3>
         <p className="lead">We've partnered with organizations across industries.</p>

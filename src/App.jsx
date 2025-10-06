@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 import HeroCarousel from './components/HeroCarousel'
 import AboutUs from './components/AboutUs'
@@ -23,59 +23,28 @@ const item = {
 }
 
 export default function App() {
+  const [navOpen, setNavOpen] = useState(false)
   return (
-    <div className="page-root">
+  <div id="top" className="page-root">
       <header className="nav">
         <div className="brand">
-            <img src="/CroppedMBSLogo.png" alt="MBS Support" className="brand-logo" />
+            <a href="#top" className="brand-link"><img src="/CroppedMBSLogo.png" alt="MBS Support" className="brand-logo" /></a>
         </div>
-        <nav className="links">
-          <a>Product</a>
-          <a>Features</a>
-          <a>Pricing</a>
-          <a className="cta">Get started</a>
+
+        <button className="nav-toggle" aria-expanded={navOpen} aria-label="Toggle navigation" onClick={() => setNavOpen(v => !v)}>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 12h18M3 6h18M3 18h18" /></svg>
+        </button>
+
+        <nav className={`links ${navOpen ? 'open' : ''}`}>
+          <a href="#about" onClick={() => setNavOpen(false)}>About</a>
+          <a href="#services" onClick={() => setNavOpen(false)}>Services</a>
+          <a href="#clients" onClick={() => setNavOpen(false)}>Clients</a>
         </nav>
       </header>
 
       <main className="hero">
   <HeroCarousel />
-        <motion.div
-          className="hero-inner"
-          variants={container}
-          initial="hidden"
-          animate="show"
-        >
-          <motion.h1 className="title" variants={item}>
-            Design beautiful experiences
-          </motion.h1>
-          <motion.p className="subtitle" variants={item}>
-            Craft delightful web interfaces with motion-first components built
-            on Framer Motion and React.
-          </motion.p>
-
-
-
-          <motion.div className="hero-ctas" variants={item}>
-            <button className="btn primary">Try it free</button>
-            <button className="btn ghost">View examples</button>
-          </motion.div>
-
-          <motion.div className="feature-cards" variants={item}>
-            <section className="card">
-              <h3>Animate</h3>
-              <p>Fluid, interruptible animations with an intuitive API.</p>
-            </section>
-            <section className="card">
-              <h3>Compose</h3>
-              <p>Reusable components and layout primitives for speed.</p>
-            </section>
-            <section className="card">
-              <h3>Ship</h3>
-              <p>Fast builds and production-ready performance.</p>
-            </section>
-          </motion.div>
-        </motion.div>
-
+       
         {/* removed right-side visual to allow full-width hero */}
       </main>
 
@@ -83,23 +52,25 @@ export default function App() {
       <AboutUs />
 
       <Services items={[
-        { title: 'Consumer Recovery', desc: 'End-to-end consumer receivable management and legal support', icon: '👥' },
-        { title: 'Commercial Recovery', desc: 'Tailored strategies for commercial portfolios and disputes', icon: '🏢' },
-        { title: 'Portfolio Analytics', desc: 'Data-driven segmentation, scoring and recovery modeling', icon: '📊' },
-        { title: 'Compliance & Consulting', desc: 'Regulatory alignment, audits and training for teams', icon: '🛡️' }
+        { title: 'Personal Loan Recovery', desc: 'Corporate commercial business-to-business payment collection services with advanced solutions and support.', icon: '/Personal loan Recovery.jpg' },
+        { title: 'Debt Recovery Agency', desc: "Corporate debt restructuring refers to the reorganization of a distressed company's outstanding obligations to its creditors.", icon: '/CORPORATE DEBT COLLECTION.jpg' },
+        { title: 'Money Recovery', desc: "We keep client details confidential, We don't Share the case details Even in Critical Times, or any Mishap Happens In money recovery.", icon: '/Money Recovery.jpg' },
+        { title: 'Recovery overseas debts', desc: "They have consistently rated us highly because of our focus on simplifying legal requirements and providing regular updates.", icon: '/Recovery overseas debts.jpg' },
+        { title: 'Bad Debt Recovery Services', desc: "Relieve stress of chasing debtors Save time; let us handle the collections process of bad debt recovery in Delhi.", icon: '/Bad Debt Recovery Services.jpg' },
+        { title: 'Commercial Debt Collection', desc: "Commercial Debt Recovery represents the collection of delinquent amounts from a debtor on behalf of your business (creditor).", icon: '/COMMERCIAL DEBT COLLECTION.jpg' },
+        { title: 'Consumer Debt Collection', desc: "Consumer Debt Collection is the recovery of debts owed by an individual to a business – often referred to as B2C debt collection.", icon: '/CONSUMER DEBT COLLECTION.jpg' }
       ]} />
 
       <Clients logos={[
-        { src: '/client1.png', alt: 'Client 1' },
-        { src: '/client2.png', alt: 'Client 2' },
-        { src: '/client3.png', alt: 'Client 3' },
-        { src: '/client4.png', alt: 'Client 4' }
+        { src: '/bajaj_amc_1.png', alt: 'Bajaj Finance' },
+        { src: '/kissht_logo.png', alt: 'Kissht Ring' },
+        { src: '/Nira.jpg', alt: 'Nira Finance (Upcoming)' },
       ]} />
 
       <Reviews items={[
-        { author: 'Acme Financial', rating: 5, text: 'MBS Support transformed our collections process — smart, compliant and humane.' },
-        { author: 'GreenBank', rating: 5, text: 'Results-driven and professional. Highly recommended.' },
-        { author: 'RetailCo', rating: 4, text: 'Their analytics and operational support lifted recoveries across channels.' }
+        { author: 'Bajaj Finserv', rating: 5, text: 'MBS Support transformed our collections process — smart, compliant and humane.' },
+        { author: 'Kissht Ring', rating: 5, text: 'Results-driven and professional. Highly recommended.' },
+        { author: 'Bajaj Finserv', rating: 4, text: 'Their analytics and operational support lifted recoveries across channels.' }
       ]} />
 
       <Footer />
