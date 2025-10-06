@@ -1,0 +1,20 @@
+{
+  "name": "mbs-support-homepage",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "framer-motion": "^10.12.4",
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
+  },
+  "devDependencies": {
+    "vite": "5.1.6",
+    "@vitejs/plugin-react": "^5.0.0"
+  }
+}
