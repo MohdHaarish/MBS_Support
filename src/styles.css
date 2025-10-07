@@ -86,7 +86,7 @@ body{
 .hero-visual{display:flex;justify-content:center;align-items:center}
 .blob{width:100%;height:320px;border-radius:20px;box-shadow:0 10px 30px rgba(2,8,23,0.6)}
 
-.site-footer{margin-top:auto;padding:20px 48px;color:var(--muted);font-size:13px}
+.site-footer{margin-top:auto;padding:20px 48px;color:var(--muted);font-size:13px;box-sizing:border-box}
 
 @media (max-width:900px){
   .hero{grid-template-columns:1fr; padding:28px}
@@ -193,11 +193,11 @@ body{
 }
 
 /* Footer grid */
-.footer-grid{display:grid;grid-template-columns:280px 1fr 1fr 320px;gap:18px;align-items:start}
+.footer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;align-items:start;max-width:1100px;margin:0 auto;padding:0}
 .footer-brand img{height:36px}
 .footer-links h4{margin:0 0 8px}
-.footer-links a{display:block;color:var(--muted);margin:6px 0}
-.footer-newsletter .newsletter-form{display:flex;gap:8px}
+.footer-links a{display:block;color:var(--muted);margin:6px 0;word-break:break-word;overflow-wrap:anywhere}
+.footer-newsletter .newsletter-form{display:flex;gap:8px;align-items:center}
 .newsletter-form input{padding:8px 10px;border-radius:8px;border:1px solid rgba(255,255,255,0.06);background:transparent;color:inherit}
 .footer-bottom{margin-top:18px;color:var(--muted);font-size:13px;text-align:center}
 
@@ -213,7 +213,7 @@ body{
 /* responsive adjustments */
 @media (max-width:1100px){
   .services-grid{grid-template-columns:repeat(2,1fr)}
-  .footer-grid{grid-template-columns:1fr 1fr}
+  .footer-grid{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
   .about-grid{grid-template-columns:1fr}
 }
 
@@ -225,6 +225,12 @@ body{
   .clients-strip{grid-template-columns:1fr}
   .client-logo{min-height:72px;padding:10px}
   .client-logo img{max-height:64px}
+  /* Footer mobile layout */
+  .site-footer{padding:18px 16px}
+  .footer-grid{grid-template-columns:1fr;gap:12px}
+  .footer-newsletter .newsletter-form{flex-direction:column;align-items:stretch}
+  .newsletter-form input{width:100%}
+  .newsletter-form .btn{width:100%}
 }
 
 /* Small screens: show one client per row for clarity */
